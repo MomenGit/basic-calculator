@@ -10,36 +10,43 @@
   </head>
   <body>
     <section>
-      <div id="screen"></div>
+      <div id="screen">
+        <div id="operation">
+          <span id="old-operand">0</span> <span id="operator">+</span>
+          <span id="new-operand">0</span>
+        </div>
+        <div id="operand">0</div>
+      </div>
       <div id="btns-container">
         <div class="row">
-          <button id="clear">AC</button>
-          <button id="<"><</button>
-          <button id="%">%</button>
-          <button id="/">/</button>
+          <button id="clear" class="operator">AC</button>
+          <button id="delete" class="operator"><</button>
+          <button id="modulus" class="operator">%</button>
+          <button id="divide" class="operator">/</button>
         </div>
         <div class="row">
           <button id="7">7</button>
           <button id="8">8</button>
           <button id="9">9</button>
-          <button id="x">x</button>
+          <button id="multiply" class="operator">x</button>
         </div>
         <div class="row">
           <button id="4">4</button>
           <button id="5">5</button>
           <button id="6">6</button>
-          <button id="+">+</button>
+          <button id="add" class="operator">+</button>
         </div>
         <div class="row">
           <button id="1">1</button>
           <button id="2">2</button>
           <button id="3">3</button>
-          <button id="-">-</button>
+          <button id="subtract" class="operator">-</button>
         </div>
         <div class="row">
           <button id="0">0</button>
-          <button id=".">.</button>
-          <button id="equal">=</button>
+          <button id="dot">.</button>
+          <button id="sign" class="operator">+/-</button>
+          <button id="equal" class="operator">=</button>
         </div>
       </div>
     </section>

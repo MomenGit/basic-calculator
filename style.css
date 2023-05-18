@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: Roboto, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 html,
@@ -12,36 +13,70 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: darkslateblue;
 }
 section {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  width: 40vmax;
+  width: 100vmin;
   height: 100vh;
-  padding: 16px;
+  padding: 5vmin 5vmin;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 16px;
+  box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.4);
 }
 #screen {
   height: 25%;
   background-color: olive;
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.4) inset;
+  border-radius: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+#operation {
+  height: 25%;
+  font-size: 2em;
+  text-align: end;
+  padding: 8px;
+}
+#operand {
+  display: flex;
+  height: 75%;
+  font-size: 4em;
+  justify-content: end;
+  align-items: flex-end;
+  padding: 8px;
 }
 #btns-container {
   display: flex;
   flex-direction: column;
   height: 75%;
   gap: 16px;
-  height: 100%;
   width: 100%;
 }
 .row {
   display: flex;
   justify-content: space-evenly;
+  height: 25%;
+  gap: 8px;
 }
 button {
+  box-shadow: -1px -1px 2px 2px rgb(40, 40, 40);
+  background-color: black;
+  font-weight: bold;
+  color: white;
+  font-size: 2em;
   width: 25%;
-  margin: 4px;
   flex-grow: 0;
+  border-radius: 8px;
+  border: none;
+}
+.operator {
+  color: greenyellow;
+}
+.digit {
 }
 #equal {
-  flex-grow: 2;
+  background-color: greenyellow;
+  color: black;
 }
