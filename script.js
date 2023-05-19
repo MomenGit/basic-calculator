@@ -7,17 +7,19 @@ const screen = document.getElementById("screen");
 
 console.log(digits);
 const operations = {
-  "+": () => sum(),
-  x: () => multiply(),
-  "/": () => divide(),
-  "-": () => subtract(),
-  "%": () => modulus(),
+  "+": () => sum(firstOperand.textContent, newOperand.textContent),
+  x: () => multiply(firstOperand.textContent, newOperand.textContent),
+  "/": () => divide(firstOperand.textContent, newOperand.textContent),
+  "-": () => subtract(firstOperand.textContent, newOperand.textContent),
+  "%": () => modulus(firstOperand.textContent, newOperand.textContent),
 };
 const functions = {
   clear: () => clearAll(screen),
   delete: popDigit(),
   "decimal-point": () => addDecimalPoint(newOperand),
   "sign-toggler": () => toggleSign(newOperand),
+  equal: () =>
+    operate(document.getElementById("operator").textContent, newOperand),
 };
 
 function popDigit() {
@@ -30,12 +32,15 @@ function popDigit() {
   };
 }
 
-function operate(n1, n2, operator) {
-  operations[operator];
+function operate(operator, operand) {
+  if (!document.getElementById("new-operand").textContent) {
+    document.getElementById("new-operand").textContent = operand.textContent;
+    operand.textContent = String(operations[operator]());
+  }
 }
 
 function setOperand(digit, operand) {
-  if (operand.textContent.length == 0 && digit == 0) return;
+  if (operand.textContent.length == 0 && digit == 0) operand.textContent = "0.";
   if (operand.textContent.length < 10)
     operand.textContent = operand.textContent + digit;
 }
@@ -47,6 +52,10 @@ function setOperation(op, firstOperand) {
   ) {
     firstOperand.textContent = newOperand.textContent;
     newOperand.textContent = "";
+  } else if (firstOperand.textContent.length > 0) {
+    firstOperand.textContent = newOperand.textContent;
+    newOperand.textContent = "";
+    document.getElementById("new-operand").textContent = "";
   }
 }
 
@@ -70,11 +79,21 @@ window.addEventListener("keypress", (ev) => {
   if (+ev.key >= 0 && +ev.key <= 9) setOperand(Number(ev.key), newOperand);
 });
 
-function sum(n1, n2) {}
-function subtract(n1, n2) {}
-function multiply(n1, n2) {}
-function divide(n1, n2) {}
-function modulus(n1, n2) {}
+function sum(n1, n2) {
+  return +n1 + +n2;
+}
+function subtract(n1, n2) {
+  return +n1 - +n2;
+}
+function multiply(n1, n2) {
+  return +n1 * +n2;
+}
+function divide(n1, n2) {
+  if (n2) return +n1 / +n2;
+}
+function modulus(n1, n2) {
+  return +n1 % +n2;
+}
 function toggleSign(operand) {
   operand.textContent = String(-Number(operand.textContent));
 }
@@ -84,7 +103,8 @@ function addDecimalPoint(operand) {
 }
 
 function clearAll(screen) {
-  for (const child of screen.children) {
+  for (const child of screen.firstElementChild.children) {
     child.textContent = "";
   }
+  screen.lastElementChild.textContent = "";
 }
